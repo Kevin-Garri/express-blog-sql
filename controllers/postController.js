@@ -1,11 +1,11 @@
 const connection = require("../data/db");
 
 const index = (req, res) => {
-  const sql = "SELECT * FROM blog";
+  const sql = "SELECT * FROM posts";
 
   //query db
   connection.query(sql, (err, results) => {
-    if (err) return res.status(500), json({ error: "query al database fallita" });
+    if (err) return res.status(500).json({ error: "query al database fallita" });
     res.json(results);
   });
 };
@@ -15,7 +15,7 @@ const show = (req, res) => {
 
   const sqPost = "SELECT * FROM posts WHERE id = ?";
   connection.query(sqPost, [id], (err, results) => {
-    if (err) return res.status(500).json({ error: "Errore nella query" });
+    if (err) return res.status(500).json({ error: "query al database fallita" });
     if (results.length === 0)
       return res.status(404).json({ error: "Post non trovato" });
     res.json(results[0]);

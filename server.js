@@ -22,3 +22,6 @@ app.use(notFound);
 app.get("/", (req, res) => {
   res.send("Il mio BLOG");
 });
+
+//rotta post
+app.use("/posts", postRouter);
